@@ -1,15 +1,7 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { Context } from '../../App';
+import React from 'react';
 import { ImCancelCircle } from 'react-icons/im'
 
-const RandomProduct = ({ setShowRandom }) => {
-    const [randomProduct, setRandomProduct] = useState({})
-    const { allProducts } = useContext(Context)
-    useEffect(() => {
-        const random = allProducts[Math.floor(Math.random() * 20) + 1]
-        setRandomProduct(random)
-    }, [allProducts])
-    console.log(randomProduct);
+const RandomProduct = ({ setShowRandom, randomProduct }) => {
     return (
         <div className="absolute bottom-40 border py-4 px-2 rounded-lg w-[500px] flex flex-col animate__animated animate__backInLeft">
             <div className="relative w-full">

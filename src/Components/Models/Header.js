@@ -11,8 +11,7 @@ import CartItem from './CartItem';
 
 const Header = () => {
     const [products, setProducts] = useProducts()
-    const { setLoading, allProducts, cost, setCost, productModal, setProductModal } = useContext(Context)
-    const [cart, setCart] = useState([])
+    const { setLoading, allProducts, cost, setCost, productModal, setProductModal, cart, setCart } = useContext(Context)
     const [showQuery, setShowQuery] = useState(false)
     const [totalQuantity, setTotalQuantity] = useState(0)
     const [searchResult, setShowResult] = useState([])
@@ -54,7 +53,7 @@ const Header = () => {
         }
         setCart(savedCartArray)
         setLoading(false)
-    }, [allProducts, setLoading])
+    }, [allProducts, setLoading, setCart])
     const handleCategory = (e) => {
         if (e.target.value === 'all') {
             setProducts(allProducts)

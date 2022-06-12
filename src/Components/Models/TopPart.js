@@ -1,13 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { Context } from '../../App';
 import RandomProduct from './RandomProduct';
 
 const TopPart = () => {
+    const { allProducts } = useContext(Context)
+    const [randomProduct, setRandomProduct] = useState({})
     const [showRandom, setShowRandom] = useState(false)
     useEffect(() => {
         setTimeout(() => {
             setShowRandom(true);
         }, 3000)
     }, [])
+    useEffect(() => {
+        const setRandom = async () => {
+            const random = allProducts[Math.floor(Math.random() * 20) + 1]
+            setRandomProduct(random)
+        }
+        setRandom()
+    }, [allProducts])
     return (
         <div class="parent h-[500px] w-[95%] mt-4 mx-auto relative">
             <div class="div1 border">1</div>
@@ -79,7 +89,7 @@ const TopPart = () => {
                     <p class="font-semibold">Deep Flavor</p>
                 </div>
             </div>
-            {showRandom && <RandomProduct setShowRandom={setShowRandom}></RandomProduct>}
+            {(showRandom && randomProduct) && <RandomProduct randomProduct={randomProduct} setShowRandom={setShowRandom}></RandomProduct>}
         </div>
     );
 };
